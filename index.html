@@ -11,7 +11,7 @@
 
   <style>
     .swiper-pagination-bullet-active { background: #f97316 !important; }
-    #mobile-menu { transition: transform 0.3s ease-in-out; }
+    #mobile-menu { transition: transform 0.3s ease-in-out; z-index: 1001; }
     .mobile-menu-open { transform: translateX(0) !important; }
     #promo-modal { display: none; transition: opacity 0.4s ease; }
     #promo-modal.active { display: flex; }
@@ -38,26 +38,29 @@
       border-bottom: 1px solid #e5e7eb; 
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
     }
+    
+    /* Better spacing for mobile tracking status */
+    #trackingStatus { width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; }
   </style>
 </head>
 
 <body class="bg-gray-50 font-sans text-gray-800 overflow-x-hidden">
 
-<div id="promo-modal" class="fixed inset-0 z-[200] bg-black/70 items-center justify-center p-4">
-  <div class="bg-white rounded-3xl p-8 max-w-md w-full relative text-center shadow-2xl">
+<div id="promo-modal" class="fixed inset-0 z-[2000] bg-black/70 items-center justify-center p-4">
+  <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full relative text-center shadow-2xl">
     <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-3xl font-light">&times;</button>
-    <div class="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">🎁</div>
-    <h3 class="text-2xl font-bold text-blue-900 mb-2">New Customer?</h3>
-    <p class="text-gray-600 mb-6">Get <span class="font-bold text-orange-500 text-xl">5% OFF</span> your first shipment.</p>
+    <div class="bg-orange-100 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">🎁</div>
+    <h3 class="text-xl md:text-2xl font-bold text-blue-900 mb-2">New Customer?</h3>
+    <p class="text-gray-600 mb-6 text-sm md:text-base">Get <span class="font-bold text-orange-500 text-xl">5% OFF</span> your first shipment.</p>
     <a href="#booking" onclick="closeModal()" class="block w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition shadow-lg">Claim My Discount</a>
   </div>
 </div>
 
-<nav id="main-nav" class="fixed w-full z-[100] transition-all duration-300 py-4">
-  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+<nav id="main-nav" class="fixed w-full z-[1000] transition-all duration-300 py-4">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
     <div class="flex items-center">
-        <img src="assets/logo.png" alt="DND Logistics" class="h-10">
-        <span class="ml-2 font-bold text-xl text-blue-900">DND Global</span>
+        <img src="assets/logo.png" alt="DND Logistics" class="h-8 md:h-10">
+        <span class="ml-2 font-bold text-lg md:text-xl text-blue-900">DND Global</span>
     </div>
     <div class="hidden md:flex gap-8 font-semibold text-gray-700">
       <a href="#services" class="hover:text-orange-500 transition">Services</a>
@@ -72,7 +75,7 @@
   </div>
 </nav>
 
-<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[101] transform translate-x-full md:hidden flex flex-col p-8 gap-6 font-bold text-lg">
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transform translate-x-full md:hidden flex flex-col p-8 gap-6 font-bold text-lg">
   <button id="close-btn" class="self-end text-3xl">&times;</button>
   <a href="#services" class="mobile-link hover:text-orange-500">Services</a>
   <a href="#about" class="mobile-link hover:text-orange-500">About Us</a>
@@ -84,72 +87,73 @@
 <header class="relative bg-cover bg-center text-white min-h-[90vh] flex items-center" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000');">
   <div class="absolute inset-0 bg-blue-900/70"></div>
   <div class="relative max-w-7xl mx-auto px-6 py-20 text-center w-full">
-    <h1 class="text-5xl md:text-7xl font-extrabold mb-6" data-aos="fade-down">Smart. Fast. Safe.</h1>
-    <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="200">Logistics solutions for Nigeria and the world.</p>
-    <div class="max-w-3xl mx-auto bg-white p-3 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-2" data-aos="zoom-in" data-aos-delay="400">
-      <input id="trackingInput" type="text" placeholder="Enter Tracking ID (e.g. DND-5520)" class="flex-1 p-4 text-gray-800 rounded-xl focus:outline-none bg-gray-50 border border-gray-100">
+    <h1 class="text-4xl md:text-7xl font-extrabold mb-6" data-aos="fade-down">Smart. Fast. Safe.</h1>
+    <p class="text-lg md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="200">Logistics solutions for Nigeria and the world.</p>
+    <div class="max-w-3xl mx-auto bg-white p-2 md:p-3 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-2" data-aos="zoom-in" data-aos-delay="400">
+      <input id="trackingInput" type="text" placeholder="Enter Tracking ID (e.g. DND-5520)" class="flex-1 p-4 text-gray-800 rounded-xl focus:outline-none bg-gray-50 border border-gray-100 uppercase">
       <button onclick="trackPackage()" class="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg transform hover:scale-105">Track Now</button>
     </div>
-    <div id="trackingStatus" class="mt-6 text-xl font-bold text-orange-400 min-h-[1.5rem] tracking-wide"></div>
+    <div id="trackingStatus"></div>
   </div>
 </header>
 
-<section id="services" class="max-w-7xl mx-auto px-6 py-24">
+<section id="services" class="max-w-7xl mx-auto px-6 py-16 md:py-24">
   <div class="text-center mb-16" data-aos="fade-up">
-    <h2 class="text-4xl font-extrabold mb-4">Our Core Services</h2>
-    <div class="w-24 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-blue-900">Our Core Services</h2>
+    <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
   </div>
-  <div class="grid md:grid-cols-3 gap-10">
+  <div class="grid md:grid-cols-3 gap-8 md:gap-10">
     <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 group" data-aos="fade-up">
-      <img src="assets/images/courier.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-500" alt="Courier">
-      <div class="p-8 text-center"><h3 class="text-2xl font-bold mb-3">Courier & Logistics</h3><p class="text-gray-600">Secure and timely delivery of parcels nationwide.</p></div>
+      <img src="assets/images/courier.jpg" class="h-48 md:h-56 w-full object-cover group-hover:scale-110 transition duration-500" alt="Courier">
+      <div class="p-6 md:p-8 text-center"><h3 class="text-xl md:text-2xl font-bold mb-3">Courier & Logistics</h3><p class="text-gray-600 text-sm md:text-base">Secure and timely delivery of parcels nationwide.</p></div>
     </div>
     <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 group" data-aos="fade-up" data-aos-delay="150">
-      <img src="assets/images/freight.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-500" alt="Freight">
-      <div class="p-8 text-center"><h3 class="text-2xl font-bold mb-3">Freight & Haulage</h3><p class="text-gray-600">Heavy-duty cargo transportation solutions.</p></div>
+      <img src="assets/images/freight.jpg" class="h-48 md:h-56 w-full object-cover group-hover:scale-110 transition duration-500" alt="Freight">
+      <div class="p-6 md:p-8 text-center"><h3 class="text-xl md:text-2xl font-bold mb-3">Freight & Haulage</h3><p class="text-gray-600 text-sm md:text-base">Heavy-duty cargo transportation solutions.</p></div>
     </div>
     <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 group" data-aos="fade-up" data-aos-delay="300">
-      <img src="assets/images/warehouse.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-500" alt="Warehousing">
-      <div class="p-8 text-center"><h3 class="text-2xl font-bold mb-3">Warehousing</h3><p class="text-gray-600">Safe storage and efficient distribution services.</p></div>
-    </div>
-  </div>
-</section>
-<section id="about" class="bg-blue-50 py-24">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-    <div data-aos="fade-right">
-      <h2 class="text-4xl font-extrabold mb-8 text-blue-900">About DND Global Logistics Ltd</h2>
-      <p class="text-gray-700 text-lg leading-relaxed mb-6">
-        DND Global Logistics Ltd is a registered Nigerian logistics company committed to efficient, safe, and reliable transportation solutions.
-      </p>
-      <p class="text-gray-700 text-lg leading-relaxed mb-8">
-        We specialize in courier services, freight forwarding, haulage, and last-mile delivery. Our mission is to bridge the gap in supply chain management using modern technology and a professional workforce.
-      </p>
-      <div class="flex gap-4">
-          <div class="text-center bg-white p-4 rounded-2xl shadow-sm flex-1">
-              <span class="block text-3xl font-bold text-orange-500">100%</span>
-              <span class="text-sm text-gray-500 font-bold uppercase">Safe Delivery</span>
-          </div>
-          <div class="text-center bg-white p-4 rounded-2xl shadow-sm flex-1">
-              <span class="block text-3xl font-bold text-orange-500">24/7</span>
-              <span class="text-sm text-gray-500 font-bold uppercase">Support</span>
-          </div>
-      </div>
-    </div>
-    <div class="relative" data-aos="fade-left">
-      <img src="assets/images/freight.jpg" class="rounded-3xl shadow-2xl relative z-10" alt="About DND">
-      <div class="absolute -bottom-6 -right-6 w-full h-full border-8 border-orange-500 rounded-3xl -z-0"></div>
+      <img src="assets/images/warehouse.jpg" class="h-48 md:h-56 w-full object-cover group-hover:scale-110 transition duration-500" alt="Warehousing">
+      <div class="p-6 md:p-8 text-center"><h3 class="text-xl md:text-2xl font-bold mb-3">Warehousing</h3><p class="text-gray-600 text-sm md:text-base">Safe storage and efficient distribution services.</p></div>
     </div>
   </div>
 </section>
 
-<section id="pricing" class="py-24">
+<section id="about" class="bg-blue-50 py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+    <div data-aos="fade-right">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-blue-900">About DND Global Logistics Ltd</h2>
+      <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+        DND Global Logistics Ltd is a registered Nigerian logistics company committed to efficient, safe, and reliable transportation solutions.
+      </p>
+      <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-8">
+        We specialize in courier services, freight forwarding, haulage, and last-mile delivery using modern technology.
+      </p>
+      <div class="flex gap-4">
+          <div class="text-center bg-white p-4 rounded-2xl shadow-sm flex-1">
+              <span class="block text-2xl md:text-3xl font-bold text-orange-500">100%</span>
+              <span class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest">Safe Delivery</span>
+          </div>
+          <div class="text-center bg-white p-4 rounded-2xl shadow-sm flex-1">
+              <span class="block text-2xl md:text-3xl font-bold text-orange-500">24/7</span>
+              <span class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest">Support</span>
+          </div>
+      </div>
+    </div>
+    <div class="relative mt-8 md:mt-0" data-aos="fade-left">
+      <img src="assets/images/freight.jpg" class="rounded-3xl shadow-2xl relative z-10 w-full" alt="About DND">
+      <div class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 w-full h-full border-8 border-orange-500 rounded-3xl -z-0"></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="py-16 md:py-24">
   <div class="max-w-4xl mx-auto px-6">
     <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="text-4xl font-extrabold mb-4">Cost Estimator</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-blue-900">Cost Estimator</h2>
         <p class="text-gray-600 italic">Quickly estimate shipping costs based on distance and weight</p>
     </div>
-    <div class="bg-white p-10 md:p-14 rounded-[3rem] shadow-2xl border border-gray-100" data-aos="zoom-in">
-      <div class="grid md:grid-cols-2 gap-8 mb-8">
+    <div class="bg-white p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-gray-100" data-aos="zoom-in">
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
         <div>
           <label class="font-bold block mb-3 text-blue-900 uppercase text-xs tracking-widest">Distance (KM)</label>
           <input id="distance" type="number" placeholder="50" class="w-full p-4 border-2 border-gray-100 bg-gray-50 rounded-2xl focus:border-orange-500 outline-none transition">
@@ -159,30 +163,30 @@
           <input id="weight" type="number" placeholder="10" class="w-full p-4 border-2 border-gray-100 bg-gray-50 rounded-2xl focus:border-orange-500 outline-none transition">
         </div>
       </div>
-      <button onclick="calculatePrice()" class="w-full bg-blue-900 hover:bg-black text-white font-black py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1">
+      <button onclick="calculatePrice()" class="w-full bg-blue-900 hover:bg-black text-white font-black py-4 md:py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1">
         GENERATE ESTIMATE
       </button>
-      <p id="priceResult" class="text-center text-3xl font-black text-orange-500 mt-8"></p>
+      <p id="priceResult" class="text-center text-2xl md:text-3xl font-black text-orange-500 mt-8"></p>
     </div>
   </div>
 </section>
 
-<section class="bg-blue-900 py-24 text-white overflow-hidden">
+<section class="bg-blue-900 py-16 md:py-24 text-white overflow-hidden">
   <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-3xl font-extrabold text-center mb-16" data-aos="fade-up">What Our Clients Say</h2>
+    <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-16" data-aos="fade-up">What Our Clients Say</h2>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide px-12 text-center">
-          <p class="text-2xl italic mb-8 font-light leading-relaxed">"Their speed is unmatched. I sent a package from Lagos to Kano and it arrived perfectly within 48 hours."</p>
+        <div class="swiper-slide px-4 md:px-12 text-center">
+          <p class="text-xl md:text-2xl italic mb-8 font-light leading-relaxed">"Their speed is unmatched. I sent a package from Lagos to Kano and it arrived perfectly within 48 hours."</p>
           <div class="flex items-center justify-center gap-4">
-              <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center font-bold">A</div>
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-orange-500 rounded-full flex items-center justify-center font-bold">A</div>
               <h4 class="font-bold text-orange-400">Ahmed Lawal</h4>
           </div>
         </div>
-        <div class="swiper-slide px-12 text-center">
-          <p class="text-2xl italic mb-8 font-light leading-relaxed">"Reliable haulage. We used them for factory relocation and all our equipment stayed secure."</p>
+        <div class="swiper-slide px-4 md:px-12 text-center">
+          <p class="text-xl md:text-2xl italic mb-8 font-light leading-relaxed">"Reliable haulage. We used them for factory relocation and all our equipment stayed secure."</p>
           <div class="flex items-center justify-center gap-4">
-              <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center font-bold">S</div>
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-orange-500 rounded-full flex items-center justify-center font-bold">S</div>
               <h4 class="font-bold text-orange-400">Sade Oke</h4>
           </div>
         </div>
@@ -191,19 +195,20 @@
     </div>
   </div>
 </section>
-<section id="booking" class="bg-gray-100 py-24">
+
+<section id="booking" class="bg-gray-100 py-16 md:py-24">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-16 items-center">
+    <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
       <div data-aos="fade-right">
-        <h2 class="text-4xl font-black mb-6 text-blue-900">Book A Pickup</h2>
-        <p class="text-gray-600 mb-8 text-lg">Submit your request below and our team will contact you immediately.</p>
+        <h2 class="text-3xl md:text-4xl font-black mb-6 text-blue-900">Book A Pickup</h2>
+        <p class="text-gray-600 mb-8 text-lg">Submit your request and our team will contact you immediately.</p>
         <div class="space-y-6">
           <div class="flex gap-4"><span class="text-orange-500 font-bold text-xl">✓</span><p class="font-bold">Real-time tracking enabled</p></div>
           <div class="flex gap-4"><span class="text-orange-500 font-bold text-xl">✓</span><p class="font-bold">Nationwide Door-to-Door Delivery</p></div>
         </div>
       </div>
 
-      <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl relative" data-aos="fade-left">
+      <div class="bg-white p-6 md:p-10 rounded-3xl shadow-2xl relative" data-aos="fade-left">
         <form action="https://api.sheetmonkey.io/form/c7zQo2N326Psp1U8ebmFL2" method="POST" id="pickupForm" class="space-y-4">
           <input type="hidden" name="tracking_id" id="hiddenTrackingId">
           <input type="hidden" name="status" value="Processing">
@@ -254,30 +259,31 @@
 
 <footer id="contact" class="bg-gray-950 text-white pt-20 pb-10">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 pb-16 border-b border-gray-800">
-    <div data-aos="fade-up">
+    <div>
       <h3 class="text-2xl font-bold mb-6">DND Global Logistics</h3>
-      <p class="text-gray-500 leading-relaxed">Providing reliable, fast, and safe logistics solutions throughout Nigeria.</p>
+      <p class="text-gray-500 leading-relaxed text-sm">Providing reliable, fast, and safe logistics solutions throughout Nigeria. Registered and trusted.</p>
     </div>
-    <div data-aos="fade-up" data-aos-delay="100">
-      <h3 class="text-xl font-bold mb-6 underline decoration-orange-500 decoration-4 underline-offset-8">Contact Info</h3>
-      <p class="mb-3">📍 Maiduguri, Bornu State, Nigeria</p>
-      <p class="mb-3">📞 +234 816 941 0967</p>
-      <p>📧 info@dndgloballogistics.com</p>
+    <div>
+      <h3 class="text-xl font-bold mb-6 underline decoration-orange-500 decoration-4 underline-offset-8 text-sm">Contact Info</h3>
+      <p class="mb-3 text-sm">📍 Maiduguri, Bornu State, Nigeria</p>
+      <p class="mb-3 text-sm">📞 +234 816 941 0967</p>
+      <p class="text-sm">📧 info@dndgloballogistics.com</p>
     </div>
-    <div data-aos="fade-up" data-aos-delay="200">
-      <h3 class="text-xl font-bold mb-6 underline decoration-orange-500 decoration-4 underline-offset-8">Quick Links</h3>
-      <ul class="text-gray-500 space-y-3 font-medium">
+    <div>
+      <h3 class="text-xl font-bold mb-6 underline decoration-orange-500 decoration-4 underline-offset-8 text-sm">Quick Links</h3>
+      <ul class="text-gray-500 space-y-3 font-medium text-sm">
         <li><a href="#services" class="hover:text-white transition">Our Services</a></li>
         <li><a href="#booking" class="hover:text-white transition">Book a Delivery</a></li>
       </ul>
     </div>
   </div>
-  <p class="text-center text-gray-600 mt-10 text-sm italic">© 2026 DND Global Logistics Ltd.</p>                    
-   <p class="text-center text-gray-600 mt-10 text-sm italic">Designed and Managed by Zion Netcom Solutions Limited.</p>                                        
-   
+  <div class="text-center text-gray-600 mt-10 text-xs italic space-y-2">
+    <p>© 2026 DND Global Logistics Ltd. Smart. Fast. Safe.</p>
+    <p>Designed and Managed by Zion Netcom Solutions Limited.</p>
+  </div>
 </footer>
 
-<a href="https://wa.me/+2348169410967" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl transition hover:scale-110">
+<a href="https://wa.me/+2348169410967" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 md:w-16 md:h-16 rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl transition hover:scale-110">
     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.143c1.589.943 3.161 1.44 4.862 1.441 5.016 0 9.1-4.083 9.102-9.1 0-2.426-.945-4.707-2.661-6.423-1.716-1.716-3.998-2.662-6.424-2.662-5.018 0-9.102 4.084-9.103 9.1 0 1.884.57 3.393 1.577 5.137l-.993 3.626 3.74-.981z"/></svg>
 </a>
 
@@ -285,17 +291,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-  AOS.init({ duration: 900, once: false, mirror: true });
-  
- // NAVBAR SCROLL EFFECT
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('main-nav');
-    if (window.scrollY > 50) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
+  AOS.init({ duration: 900, once: true });
   
   // MODAL TRIGGER
   window.onload = function() {
@@ -309,54 +305,36 @@
   const mobileMenu = document.getElementById('mobile-menu');
   menuBtn.onclick = () => mobileMenu.classList.add('mobile-menu-open');
   closeBtn.onclick = () => mobileMenu.classList.remove('mobile-menu-open');
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.onclick = () => mobileMenu.classList.remove('mobile-menu-open');
+  });
 
   // TRACKING LOGIC
- async function trackPackage() {
+  async function trackPackage() {
     const input = document.getElementById('trackingInput').value.trim().toUpperCase();
     const statusDiv = document.getElementById('trackingStatus');
+    if(!input) { statusDiv.innerHTML = "<p class='mt-4 text-red-400'>❌ Enter ID</p>"; return; }
+    statusDiv.innerHTML = "<p class='mt-4 text-orange-400 animate-pulse'>🔍 Searching database...</p>";
     
-    if(!input) {
-        statusDiv.innerHTML = "❌ Please enter a Tracking ID.";
-        return;
-    }
-
-    statusDiv.innerHTML = "🔍 Searching our database...";
-
-    // This is your specific Published CSV Link
     const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRufMjlGYH970bObfzLz3hZOw5_fwy9Bnr-N2wEKN0VPpxPbaDk114OKPAAo8YokXfZFDM7g_BLrhNH/pub?output=csv";
-
     try {
-        // We add a timestamp at the end to force the browser to get fresh data from Google
-        const response = await fetch(sheetURL + "&cachebreak=" + new Date().getTime());
+        const response = await fetch(sheetURL + "?t=" + new Date().getTime());
         const csvData = await response.text();
-        
-        // Split rows and handle potential quotes in CSV
         const rows = csvData.split('\n').map(row => row.split(',').map(cell => cell.replace(/"/g, '').trim()));
-
-        // FIND THE MATCH
-        // row[0] is tracking_id | row[5] is status
         const match = rows.find(row => row[0].toUpperCase() === input);
 
         if (match) {
-            const status = match[5] || "Processing"; // Assuming status is the 6th column (F)
-            const pickup = match[1]; // Pickup location
-            const delivery = match[2]; // Destination
-
             statusDiv.innerHTML = `
-                <div class="bg-white/10 p-4 rounded-xl border border-orange-500/30 mt-4 animate-pulse">
-                    <p class="text-sm text-gray-300 uppercase font-bold tracking-widest">Package Found</p>
-                    <p class="text-2xl text-orange-500 font-black my-1">${status}</p>
-                    <p class="text-xs text-blue-200">${pickup} ➔ ${delivery}</p>
-                </div>
-            `;
+                <div class="bg-white/10 p-4 rounded-xl border border-orange-500/30 mt-6 max-w-lg mx-auto">
+                    <p class="text-xs text-gray-300 uppercase font-bold tracking-widest">Tracking Information</p>
+                    <p class="text-2xl text-orange-500 font-black my-2">${match[5] || "Processing"}</p>
+                    <p class="text-[10px] md:text-xs text-blue-200">${match[1]} ➔ ${match[2]}</p>
+                </div>`;
         } else {
-            statusDiv.innerHTML = `<span class="text-red-400">❌ ID "${input}" not found. Please check and try again.</span>`;
+            statusDiv.innerHTML = `<p class="mt-4 text-red-400">❌ ID "${input}" not found.</p>`;
         }
-    } catch (error) {
-        console.error(error);
-        statusDiv.innerHTML = "⚠️ System busy. Please try again in 1 minute.";
-    }
-}
+    } catch (e) { statusDiv.innerHTML = "<p class='mt-4 text-red-400'>⚠️ Error connecting.</p>"; }
+  }
 
   // COST ESTIMATOR
   function calculatePrice() {
@@ -364,21 +342,12 @@
     const w = document.getElementById("weight").value;
     const res = document.getElementById("priceResult");
     if(!d || !w) { res.innerText = "Input missing fields"; return; }
-    const total = (d * 150) + (w * 350);
-    res.innerText = "₦ " + total.toLocaleString();
+    res.innerText = "₦ " + ((d * 150) + (w * 350)).toLocaleString();
   }
-// SWIPER TESTIMONIALS
-  const swiper = new Swiper(".mySwiper", {
-    autoplay: { delay: 4500 },
-    pagination: { el: ".swiper-pagination", clickable: true },
-    loop: true
-  });
 
- const form = document.getElementById('pickupForm');
-const result = document.getElementById('formResponse');
-const submitBtn = document.getElementById('submitBtn');
-const hiddenInput = document.getElementById('hiddenTrackingId');
-  
+  // SWIPER
+  new Swiper(".mySwiper", { autoplay: { delay: 4500 }, pagination: { el: ".swiper-pagination" }, loop: true });
+
   // FORM HANDLING
   const form = document.getElementById('pickupForm');
   const result = document.getElementById('formResponse');
@@ -393,14 +362,10 @@ const hiddenInput = document.getElementById('hiddenTrackingId');
     e.preventDefault();
     const newID = generateTrackingID();
     hiddenTrackingInput.value = newID;
-    
     submitBtn.innerHTML = `<span class="spinner"></span> Sending...`;
     submitBtn.disabled = true;
 
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form)
-    })
+    fetch(form.action, { method: 'POST', body: new FormData(form) })
     .then(response => {
       if (response.ok) {
         form.classList.add('hidden');
@@ -425,7 +390,3 @@ const hiddenInput = document.getElementById('hiddenTrackingId');
 </script>
 </body>
 </html>
-
-
-
-

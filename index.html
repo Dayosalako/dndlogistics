@@ -318,7 +318,7 @@
     
     const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRufMjlGYH970bObfzLz3hZOw5_fwy9Bnr-N2wEKN0VPpxPbaDk114OKPAAo8YokXfZFDM7g_BLrhNH/pub?output=csv";
     try {
-        const response = await fetch(sheetURL + "?t=" + new Date().getTime());
+        const response = await fetch(sheetURL);
         const csvData = await response.text();
         const rows = csvData.split('\n').map(row => row.split(',').map(cell => cell.replace(/"/g, '').trim()));
         const match = rows.find(row => row[0].toUpperCase() === input);
@@ -390,3 +390,4 @@
 </script>
 </body>
 </html>
+

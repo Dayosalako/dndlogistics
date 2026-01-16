@@ -15,64 +15,40 @@
     .mobile-menu-open { transform: translateX(0) !important; }
     #promo-modal { display: none; transition: opacity 0.4s ease; }
     #promo-modal.active { display: flex; }
-    .spinner {
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top: 3px solid #fff;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
-  display: inline-block;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-    /* Keep navbar white and visible from the start */
-nav { 
-  background-color: white !important; 
-  border-bottom: 1px solid #e5e7eb; 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
-}
-
-/* Mobile Sidebar logic */
-#mobile-menu { 
-  transition: transform 0.3s ease-in-out; 
-}
-.mobile-menu-open { 
-  transform: translateX(0) !important; 
-}
-
-/* Modal logic */
-#promo-modal { 
-  display: none; 
-}
-#promo-modal.active { 
-  display: flex; 
-}
-
-/* Swiper dot color */
-.swiper-pagination-bullet-active { 
-  background: #f97316 !important; 
-}
     
-    /* Smooth transition for navbar color change on scroll */
-    nav.scrolled { background: white; border-bottom: 1px solid #e5e7eb; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+    .spinner {
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 3px solid #fff;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    nav { 
+      background-color: white !important; 
+      border-bottom: 1px solid #e5e7eb; 
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+    }
   </style>
 </head>
 
 <body class="bg-gray-50 font-sans text-gray-800 overflow-x-hidden">
 
 <div id="promo-modal" class="fixed inset-0 z-[200] bg-black/70 items-center justify-center p-4">
-  <div class="bg-white rounded-3xl p-8 max-w-md w-full relative text-center shadow-2xl scale-up-center">
+  <div class="bg-white rounded-3xl p-8 max-w-md w-full relative text-center shadow-2xl">
     <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-3xl font-light">&times;</button>
     <div class="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">🎁</div>
     <h3 class="text-2xl font-bold text-blue-900 mb-2">New Customer?</h3>
-    <p class="text-gray-600 mb-6">Get <span class="font-bold text-orange-500 text-xl">5% OFF</span> your first shipment across Nigeria.</p>
+    <p class="text-gray-600 mb-6">Get <span class="font-bold text-orange-500 text-xl">5% OFF</span> your first shipment.</p>
     <a href="#booking" onclick="closeModal()" class="block w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition shadow-lg">Claim My Discount</a>
   </div>
 </div>
@@ -83,7 +59,6 @@ nav {
         <img src="assets/logo.png" alt="DND Logistics" class="h-10">
         <span class="ml-2 font-bold text-xl text-blue-900">DND Global</span>
     </div>
-
     <div class="hidden md:flex gap-8 font-semibold text-gray-700">
       <a href="#services" class="hover:text-orange-500 transition">Services</a>
       <a href="#about" class="hover:text-orange-500 transition">About</a>
@@ -91,35 +66,29 @@ nav {
       <a href="#booking" class="hover:text-orange-500 transition">Request Pickup</a>
       <a href="#contact" class="hover:text-orange-500 transition">Contact</a>
     </div>
-
     <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
     </button>
   </div>
-
-  <div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[101] transform translate-x-full md:hidden flex flex-col p-8 gap-6 font-bold text-lg">
-    <button id="close-btn" class="self-end text-3xl">&times;</button>
-    <a href="#services" class="mobile-link hover:text-orange-500">Services</a>
-    <a href="#about" class="mobile-link hover:text-orange-500">About Us</a>
-    <a href="#pricing" class="mobile-link hover:text-orange-500">Estimator</a>
-    <a href="#booking" class="mobile-link hover:text-orange-500">Request Pickup</a>
-    <a href="#contact" class="mobile-link hover:text-orange-500">Contact</a>
-  </div>
 </nav>
+
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[101] transform translate-x-full md:hidden flex flex-col p-8 gap-6 font-bold text-lg">
+  <button id="close-btn" class="self-end text-3xl">&times;</button>
+  <a href="#services" class="mobile-link hover:text-orange-500">Services</a>
+  <a href="#about" class="mobile-link hover:text-orange-500">About Us</a>
+  <a href="#pricing" class="mobile-link hover:text-orange-500">Estimator</a>
+  <a href="#booking" class="mobile-link hover:text-orange-500">Request Pickup</a>
+  <a href="#contact" class="mobile-link hover:text-orange-500">Contact</a>
+</div>
 
 <header class="relative bg-cover bg-center text-white min-h-[90vh] flex items-center" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000');">
   <div class="absolute inset-0 bg-blue-900/70"></div>
   <div class="relative max-w-7xl mx-auto px-6 py-20 text-center w-full">
     <h1 class="text-5xl md:text-7xl font-extrabold mb-6" data-aos="fade-down">Smart. Fast. Safe.</h1>
-    <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="200">
-      Logistics solutions for Nigeria and the world.
-    </p>
-
+    <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="200">Logistics solutions for Nigeria and the world.</p>
     <div class="max-w-3xl mx-auto bg-white p-3 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-2" data-aos="zoom-in" data-aos-delay="400">
       <input id="trackingInput" type="text" placeholder="Enter Tracking ID (e.g. DND-5520)" class="flex-1 p-4 text-gray-800 rounded-xl focus:outline-none bg-gray-50 border border-gray-100">
-      <button onclick="trackPackage()" class="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg transform hover:scale-105">
-        Track Now
-      </button>
+      <button onclick="trackPackage()" class="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg transform hover:scale-105">Track Now</button>
     </div>
     <div id="trackingStatus" class="mt-6 text-xl font-bold text-orange-400 min-h-[1.5rem] tracking-wide"></div>
   </div>
@@ -130,106 +99,18 @@ nav {
     <h2 class="text-4xl font-extrabold mb-4">Our Core Services</h2>
     <div class="w-24 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
   </div>
-
   <div class="grid md:grid-cols-3 gap-10">
     <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 group" data-aos="fade-up">
       <img src="assets/images/courier.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-500" alt="Courier">
-      <div class="p-8 text-center">
-        <h3 class="text-2xl font-bold mb-3">Courier & Logistics</h3>
-        <p class="text-gray-600">Secure and timely delivery of parcels and documents nationwide with speed.</p>
-      </div>
+      <div class="p-8 text-center"><h3 class="text-2xl font-bold mb-3">Courier & Logistics</h3><p class="text-gray-600">Secure and timely delivery of parcels nationwide.</p></div>
     </div>
     <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 group" data-aos="fade-up" data-aos-delay="150">
       <img src="assets/images/freight.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-500" alt="Freight">
-      <div class="p-8 text-center">
-        <h3 class="text-2xl font-bold mb-3">Freight & Haulage</h3>
-        <p class="text-gray-600">Professional freight handling and heavy-duty cargo transportation solutions.</p>
-      </div>
+      <div class="p-8 text-center"><h3 class="text-2xl font-bold mb-3">Freight & Haulage</h3><p class="text-gray-600">Heavy-duty cargo transportation solutions.</p></div>
     </div>
     <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 group" data-aos="fade-up" data-aos-delay="300">
       <img src="assets/images/warehouse.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-500" alt="Warehousing">
-      <div class="p-8 text-center">
-        <h3 class="text-2xl font-bold mb-3">Warehousing</h3>
-        <p class="text-gray-600">Safe storage, inventory management, and efficient distribution services.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="bg-blue-50 py-24">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-    <div data-aos="fade-right">
-      <h2 class="text-4xl font-extrabold mb-8 text-blue-900">About DND Global Logistics Ltd</h2>
-      <p class="text-gray-700 text-lg leading-relaxed mb-6">
-        DND Global Logistics Ltd is a registered Nigerian logistics company committed to efficient, safe, and reliable transportation solutions.
-      </p>
-      <p class="text-gray-700 text-lg leading-relaxed mb-8">
-        We specialize in courier services, freight forwarding, haulage, and last-mile delivery. Our mission is to bridge the gap in supply chain management using modern technology and a professional workforce.
-      </p>
-      <div class="flex gap-4">
-          <div class="text-center bg-white p-4 rounded-2xl shadow-sm flex-1">
-              <span class="block text-3xl font-bold text-orange-500">100%</span>
-              <span class="text-sm text-gray-500 font-bold uppercase">Safe Delivery</span>
-          </div>
-          <div class="text-center bg-white p-4 rounded-2xl shadow-sm flex-1">
-              <span class="block text-3xl font-bold text-orange-500">24/7</span>
-              <span class="text-sm text-gray-500 font-bold uppercase">Support</span>
-          </div>
-      </div>
-    </div>
-    <div class="relative" data-aos="fade-left">
-      <img src="assets/images/freight.jpg" class="rounded-3xl shadow-2xl relative z-10" alt="About DND">
-      <div class="absolute -bottom-6 -right-6 w-full h-full border-8 border-orange-500 rounded-3xl -z-0"></div>
-    </div>
-  </div>
-</section>
-
-<section id="pricing" class="py-24">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="text-4xl font-extrabold mb-4">Cost Estimator</h2>
-        <p class="text-gray-600 italic">Quickly estimate shipping costs based on distance and weight</p>
-    </div>
-    <div class="bg-white p-10 md:p-14 rounded-[3rem] shadow-2xl border border-gray-100" data-aos="zoom-in">
-      <div class="grid md:grid-cols-2 gap-8 mb-8">
-        <div>
-          <label class="font-bold block mb-3 text-blue-900 uppercase text-xs tracking-widest">Distance (KM)</label>
-          <input id="distance" type="number" placeholder="50" class="w-full p-4 border-2 border-gray-100 bg-gray-50 rounded-2xl focus:border-orange-500 outline-none transition">
-        </div>
-        <div>
-          <label class="font-bold block mb-3 text-blue-900 uppercase text-xs tracking-widest">Weight (KG)</label>
-          <input id="weight" type="number" placeholder="10" class="w-full p-4 border-2 border-gray-100 bg-gray-50 rounded-2xl focus:border-orange-500 outline-none transition">
-        </div>
-      </div>
-      <button onclick="calculatePrice()" class="w-full bg-blue-900 hover:bg-black text-white font-black py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1">
-        GENERATE ESTIMATE
-      </button>
-      <p id="priceResult" class="text-center text-3xl font-black text-orange-500 mt-8"></p>
-    </div>
-  </div>
-</section>
-
-<section class="bg-blue-900 py-24 text-white overflow-hidden">
-  <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-3xl font-extrabold text-center mb-16" data-aos="fade-up">What Our Clients Say</h2>
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide px-12 text-center">
-          <p class="text-2xl italic mb-8 font-light leading-relaxed">"Their speed is unmatched. I sent a package from Lagos to Kano and it arrived perfectly within 48 hours."</p>
-          <div class="flex items-center justify-center gap-4">
-              <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center font-bold">A</div>
-              <h4 class="font-bold text-orange-400">Ahmed Lawal</h4>
-          </div>
-        </div>
-        <div class="swiper-slide px-12 text-center">
-          <p class="text-2xl italic mb-8 font-light leading-relaxed">"Reliable haulage. We used them for factory relocation and all our equipment stayed secure."</p>
-          <div class="flex items-center justify-center gap-4">
-              <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center font-bold">S</div>
-              <h4 class="font-bold text-orange-400">Sade Oke</h4>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-pagination pt-10"></div>
+      <div class="p-8 text-center"><h3 class="text-2xl font-bold mb-3">Warehousing</h3><p class="text-gray-600">Safe storage and efficient distribution services.</p></div>
     </div>
   </div>
 </section>
@@ -237,69 +118,69 @@ nav {
 <section id="booking" class="bg-gray-100 py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div data-aos="fade-right">
-            <h2 class="text-4xl font-black mb-6 text-blue-900">Book A Pickup</h2>
-            <p class="text-gray-600 mb-8 text-lg">Submit your request below and our team will contact you immediately to coordinate your logistics needs.</p>
-            <div class="space-y-6">
-                <div class="flex gap-4">
-                    <span class="text-orange-500 font-bold text-xl">✓</span>
-                    <p class="font-bold">Real-time GPS tracking enabled</p>
-                </div>
-                <div class="flex gap-4">
-                    <span class="text-orange-500 font-bold text-xl">✓</span>
-                    <p class="font-bold">Nationwide Door-to-Door Delivery</p>
-                </div>
-            </div>
+      <div data-aos="fade-right">
+        <h2 class="text-4xl font-black mb-6 text-blue-900">Book A Pickup</h2>
+        <p class="text-gray-600 mb-8 text-lg">Submit your request below and our team will contact you immediately.</p>
+        <div class="space-y-6">
+          <div class="flex gap-4"><span class="text-orange-500 font-bold text-xl">✓</span><p class="font-bold">Real-time tracking enabled</p></div>
+          <div class="flex gap-4"><span class="text-orange-500 font-bold text-xl">✓</span><p class="font-bold">Nationwide Door-to-Door Delivery</p></div>
         </div>
+      </div>
+
+      <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl relative" data-aos="fade-left">
+        <form action="https://api.sheetmonkey.io/form/c7zQo2N326Psp1U8ebmFL2" method="POST" id="pickupForm" class="space-y-4">
+          <input type="hidden" name="tracking_id" id="hiddenTrackingId">
+          <input type="hidden" name="status" value="Processing">
+          
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-bold text-gray-500 uppercase ml-1">Pickup From</label>
+              <input name="pickup_location" type="text" placeholder="Full Address" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-gray-500 uppercase ml-1">Deliver To</label>
+              <input name="delivery_location" type="text" placeholder="Full Address" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-gray-500 uppercase ml-1">Item Details</label>
+            <input name="item_description" type="text" placeholder="e.g., 5kg Box" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-gray-500 uppercase ml-1">Phone Number</label>
+            <input name="phone" type="tel" placeholder="080 1234 5678" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
+          </div>
+          <button type="submit" id="submitBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 rounded-xl shadow-lg transition-all transform hover:scale-[1.01]">
+            Send Pickup Request
+          </button>
+        </form>
+
+        <div id="formResponse" class="hidden absolute inset-0 bg-white rounded-3xl flex flex-col items-center justify-center text-center p-6 z-10">
+          <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mb-4">✓</div>
+          <h3 class="text-2xl font-bold text-blue-900">Request Sent!</h3>
+          <div class="mt-4 p-4 bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl w-full max-w-xs mx-auto">
+              <p class="text-xs uppercase font-bold text-gray-400 mb-1">Your Tracking ID</p>
+              <div class="flex items-center justify-center gap-3">
+                  <p id="displayID" class="text-2xl font-black text-orange-500 tracking-widest"></p>
+                  <button onclick="copyTrackingID()" class="p-2 bg-white border rounded-lg hover:bg-gray-100 transition shadow-sm">
+                      <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                  </button>
+              </div>
+              <span id="copyFeedback" class="text-[10px] text-green-600 font-bold uppercase hidden">Copied!</span>
+          </div>
+          <p class="text-gray-600 mt-4 text-sm">Our team will contact you shortly.</p>
+          <button onclick="resetForm()" class="mt-6 text-blue-900 font-bold underline">Send another request</button>
+        </div>
+      </div>
     </div>
   </div>
-
-     <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl" data-aos="fade-left">
-  <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-    
-    <input type="hidden" name="access_key" value="c44f671d-7973-42e8-aab7-b63aec436af2">
-    
-    <input type="hidden" name="subject" value="New Pickup Request - DND Global">
-    <input type="hidden" name="from_name" value="DND Logistics Website">
-    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-    <div class="grid md:grid-cols-2 gap-4">
-      <div>
-        <label class="text-xs font-bold text-gray-500 uppercase ml-1">Pickup From</label>
-        <input name="pickup_location" type="text" placeholder="Full Address" required 
-               class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
-      </div>
-      <div>
-        <label class="text-xs font-bold text-gray-500 uppercase ml-1">Deliver To</label>
-        <input name="delivery_location" type="text" placeholder="Full Address" required 
-               class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
-      </div>
-    </div>
-     </div>
-  
-    <div>
-      <label class="text-xs font-bold text-gray-500 uppercase ml-1">Item Details</label>
-      <input name="item_description" type="text" placeholder="Weight & Package Type (e.g., 5kg Box)" required 
-             class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
-    </div>
-
-    <div>
-      <label class="text-xs font-bold text-gray-500 uppercase ml-1">Phone Number</label>
-      <input name="phone" type="tel" placeholder="080 1234 5678" required 
-             class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
-    </div>
-
-    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 rounded-xl shadow-lg transition-all transform hover:scale-[1.02]">
-      Send Pickup Request
-    </button>
-  </form>
-    </section>
+</section>
 
 <footer id="contact" class="bg-gray-950 text-white pt-20 pb-10">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 pb-16 border-b border-gray-800">
     <div data-aos="fade-up">
       <h3 class="text-2xl font-bold mb-6">DND Global Logistics</h3>
-      <p class="text-gray-500 leading-relaxed">Providing reliable, fast, and safe logistics solutions throughout Nigeria and globally. We deliver excellence in every mile.</p>
+      <p class="text-gray-500 leading-relaxed">Providing reliable, fast, and safe logistics solutions throughout Nigeria.</p>
     </div>
     <div data-aos="fade-up" data-aos-delay="100">
       <h3 class="text-xl font-bold mb-6 underline decoration-orange-500 decoration-4 underline-offset-8">Contact Info</h3>
@@ -311,15 +192,14 @@ nav {
       <h3 class="text-xl font-bold mb-6 underline decoration-orange-500 decoration-4 underline-offset-8">Quick Links</h3>
       <ul class="text-gray-500 space-y-3 font-medium">
         <li><a href="#services" class="hover:text-white transition">Our Services</a></li>
-        <li><a href="#pricing" class="hover:text-white transition">Shipping Estimator</a></li>
         <li><a href="#booking" class="hover:text-white transition">Book a Delivery</a></li>
       </ul>
     </div>
   </div>
-  <p class="text-center text-gray-600 mt-10 text-sm italic">© 2026 DND Global Logistics Ltd. Smart. Fast. Safe.</p>
+  <p class="text-center text-gray-600 mt-10 text-sm italic">© 2026 DND Global Logistics Ltd.</p>
 </footer>
 
-<a href="https://wa.me/+2348169410967" target="Hello DND Logistics my request is" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl transition hover:scale-110">
+<a href="https://wa.me/+2348169410967" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl transition hover:scale-110">
     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.143c1.589.943 3.161 1.44 4.862 1.441 5.016 0 9.1-4.083 9.102-9.1 0-2.426-.945-4.707-2.661-6.423-1.716-1.716-3.998-2.662-6.424-2.662-5.018 0-9.102 4.084-9.103 9.1 0 1.884.57 3.393 1.577 5.137l-.993 3.626 3.74-.981z"/></svg>
 </a>
 
@@ -327,175 +207,82 @@ nav {
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-  // AOS INIT - Trigger animations on every scroll up/down
-  AOS.init({ duration: 900, once: false, mirror: true, easing: 'ease-in-out' });
+  AOS.init({ duration: 900, once: false, mirror: true });
 
-  // NAVBAR SCROLL EFFECT
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('main-nav');
-    if (window.scrollY > 50) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
-
-  // MODAL TRIGGER (5 SECONDS)
+  // MODAL TRIGGER
   window.onload = function() {
     setTimeout(() => { document.getElementById('promo-modal').classList.add('active'); }, 5000);
   }
   function closeModal() { document.getElementById('promo-modal').classList.remove('active'); }
 
-  // MOBILE MENU LOGIC
+  // MOBILE MENU
   const menuBtn = document.getElementById('menu-btn');
   const closeBtn = document.getElementById('close-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   menuBtn.onclick = () => mobileMenu.classList.add('mobile-menu-open');
   closeBtn.onclick = () => mobileMenu.classList.remove('mobile-menu-open');
-  document.querySelectorAll('.mobile-link').forEach(l => l.onclick = () => mobileMenu.classList.remove('mobile-menu-open'));
 
   // TRACKING LOGIC
   async function trackPackage() {
     const input = document.getElementById('trackingInput').value.trim().toUpperCase();
     const statusDiv = document.getElementById('trackingStatus');
-    
-    if(!input) {
-        statusDiv.innerHTML = "❌ Please enter an ID.";
-        return;
-    }
-
-    statusDiv.innerHTML = "🔍 Locating package...";
-
-    // Replace this URL with your "Published" Google Sheet CSV link
+    if(!input) { statusDiv.innerHTML = "❌ Enter ID"; return; }
+    statusDiv.innerHTML = "🔍 Locating...";
     const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRufMjlGYH970bObfzLz3hZOw5_fwy9Bnr-N2wEKN0VPpxPbaDk114OKPAAo8YokXfZFDM7g_BLrhNH/pub?output=csv";
     try {
-        const response = await fetch(sheetURL);
-        const data = await response.text();
-        const rows = data.split('\n').map(row => row.split(','));
-
-        // Find the row where the Tracking ID matches (assuming ID is in column 1)
-        const match = rows.find(row => row[0].trim().toUpperCase() === input);
-
+        const res = await fetch(sheetURL);
+        const data = await res.text();
+        const rows = data.split('\n').map(r => r.split(','));
+        const match = rows.find(r => r[0].trim().toUpperCase() === input);
         if (match) {
-            // Assuming Status is in Column 5 of your sheet
-            const currentStatus = match[4] || "Processing"; 
-            statusDiv.innerHTML = `📦 <span class="text-white">Status:</span> <span class="text-orange-400">${currentStatus}</span>`;
-        } else {
-            statusDiv.innerHTML = "❓ ID not found. Check and try again.";
-        }
-    } catch (error) {
-        statusDiv.innerHTML = "⚠️ Error connecting to tracking server.";
-    }
-}
-
-  // COST ESTIMATOR
-  function calculatePrice() {
-    const d = document.getElementById("distance").value;
-    const w = document.getElementById("weight").value;
-    const res = document.getElementById("priceResult");
-    if(!d || !w) { res.innerText = "Input missing fields"; return; }
-    const total = (d * 150) + (w * 350);
-    res.innerText = "₦ " + total.toLocaleString();
+            statusDiv.innerHTML = `📦 Status: <span class="text-white">${match[4] || 'Processing'}</span>`;
+        } else { statusDiv.innerHTML = "❓ Not found."; }
+    } catch (e) { statusDiv.innerHTML = "⚠️ Server Error."; }
   }
 
-  // SWIPER TESTIMONIALS
-  const swiper = new Swiper(".mySwiper", {
-    autoplay: { delay: 4500 },
-    pagination: { el: ".swiper-pagination", clickable: true },
-    loop: true
-  });
+  // FORM HANDLING
+  const form = document.getElementById('pickupForm');
+  const result = document.getElementById('formResponse');
+  const submitBtn = document.getElementById('submitBtn');
+  const hiddenTrackingInput = document.getElementById('hiddenTrackingId');
 
- const form = document.getElementById('pickupForm');
-const result = document.getElementById('formResponse');
-const submitBtn = document.getElementById('submitBtn');
-const hiddenInput = document.getElementById('hiddenTrackingId');
+  function generateTrackingID() {
+    return `DND-${Math.floor(1000 + Math.random() * 9000)}-${"ABCDEFGHJKLMNPQRSTUVWXYZ".charAt(Math.floor(Math.random() * 24))}`;
+  }
 
-// Function to create a unique ID (Example: DND-4829-X)
-function generateTrackingID() {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ"; // Removed confusing letters like I and O
-  const randomChar = chars.charAt(Math.floor(Math.random() * chars.length));
-  const randomNum = Math.floor(1000 + Math.random() * 9000); // 4 digit number
-  return `DND-${randomNum}-${randomChar}`;
-}
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  // 1. Generate the ID and put it in the hidden field
-  const newID = generateTrackingID();
-  hiddenInput.value = newID;
-
-  // 2. Visual feedback
-  submitBtn.innerHTML = `<span class="spinner"></span> Generating ID: ${newID}...`;
-  submitBtn.disabled = true;
-
-  const formData = new FormData(form);
-  const object = Object.fromEntries(formData);
-  const json = JSON.stringify(object);
-
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: json
-  })
-  .then(async (response) => {
-    if (response.status == 200) {
-      // 3. Show Success Message and display the ID to the customer
-      form.classList.add('hidden');
-      result.classList.remove('hidden');
-      
-      // Update the success message text to show their ID
-      document.getElementById('displayID').innerText = newID;
-    } else {
-      alert("Submission failed. Please try again.");
-    }
-  })
-  .catch(error => {
-    alert("Connection error.");
-  })
-  .finally(() => {
-    submitBtn.innerHTML = "Send Pickup Request";
-    submitBtn.disabled = false;
-  });
-});
-  // Function to allow sending another request
-function resetForm() {
-  form.reset();
-  form.classList.remove('hidden');
-  result.classList.add('hidden');
-}
-
-  function copyTrackingID() {
-  const idText = document.getElementById('displayID').innerText;
-  const feedback = document.getElementById('copyFeedback');
-
-  navigator.clipboard.writeText(idText).then(() => {
-    // Show "Copied!" feedback
-    feedback.classList.remove('hidden');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const newID = generateTrackingID();
+    hiddenTrackingInput.value = newID;
     
-    // Hide feedback after 2 seconds
-    setTimeout(() => {
-      feedback.classList.add('hidden');
-    }, 2000);
-  }).catch(err => {
-    console.error('Failed to copy: ', err);
+    submitBtn.innerHTML = `<span class="spinner"></span> Sending...`;
+    submitBtn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(response => {
+      if (response.ok) {
+        form.classList.add('hidden');
+        result.classList.remove('hidden');
+        document.getElementById('displayID').innerText = newID;
+      } else { alert("Submission Error."); }
+    })
+    .catch(() => alert("Connection Error."))
+    .finally(() => {
+      submitBtn.innerHTML = "Send Pickup Request";
+      submitBtn.disabled = false;
+    });
   });
-}
+
+  function resetForm() { form.reset(); form.classList.remove('hidden'); result.classList.add('hidden'); }
+  function copyTrackingID() {
+    navigator.clipboard.writeText(document.getElementById('displayID').innerText);
+    const fb = document.getElementById('copyFeedback');
+    fb.classList.remove('hidden');
+    setTimeout(() => fb.classList.add('hidden'), 2000);
+  }
 </script>
-
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-

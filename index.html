@@ -223,23 +223,52 @@
   closeBtn.onclick = () => mobileMenu.classList.remove('mobile-menu-open');
 
   // TRACKING LOGIC
-  async function trackPackage() {
+ async function trackPackage() {
     const input = document.getElementById('trackingInput').value.trim().toUpperCase();
     const statusDiv = document.getElementById('trackingStatus');
-    if(!input) { statusDiv.innerHTML = "❌ Enter ID"; return; }
-    statusDiv.innerHTML = "🔍 Locating...";
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRufMjlGYH970bObfzLz3hZOw5_fwy9Bnr-N2wEKN0VPpxPbaDk114OKPAAo8YokXfZFDM7g_BLrhNH/pub?output=csv";
-    try {
-        const res = await fetch(sheetURL);
-        const data = await res.text();
-        const rows = data.split('\n').map(r => r.split(','));
-        const match = rows.find(r => r[0].trim().toUpperCase() === input);
-        if (match) {
-            statusDiv.innerHTML = `📦 Status: <span class="text-white">${match[4] || 'Processing'}</span>`;
-        } else { statusDiv.innerHTML = "❓ Not found."; }
-    } catch (e) { statusDiv.innerHTML = "⚠️ Server Error."; }
-  }
+    
+    if(!input) {
+        statusDiv.innerHTML = "❌ Please enter a Tracking ID.";
+        return;
+    }
 
+    statusDiv.innerHTML = "🔍 Searching our database...";
+
+    // This is your specific Published CSV Link
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRufMjlGYH970bObfzLz3hZOw5_fwy9Bnr-N2wEKN0VPpxPbaDk114OKPAAo8YokXfZFDM7g_BLrhNH/pub?output=csv";
+
+    try {
+        // We add a timestamp at the end to force the browser to get fresh data from Google
+        const response = await fetch(sheetURL + "&cachebreak=" + new Date().getTime());
+        const csvData = await response.text();
+        
+        // Split rows and handle potential quotes in CSV
+        const rows = csvData.split('\n').map(row => row.split(',').map(cell => cell.replace(/"/g, '').trim()));
+
+        // FIND THE MATCH
+        // row[0] is tracking_id | row[5] is status
+        const match = rows.find(row => row[0].toUpperCase() === input);
+
+        if (match) {
+            const status = match[5] || "Processing"; // Assuming status is the 6th column (F)
+            const pickup = match[1]; // Pickup location
+            const delivery = match[2]; // Destination
+
+            statusDiv.innerHTML = `
+                <div class="bg-white/10 p-4 rounded-xl border border-orange-500/30 mt-4 animate-pulse">
+                    <p class="text-sm text-gray-300 uppercase font-bold tracking-widest">Package Found</p>
+                    <p class="text-2xl text-orange-500 font-black my-1">${status}</p>
+                    <p class="text-xs text-blue-200">${pickup} ➔ ${delivery}</p>
+                </div>
+            `;
+        } else {
+            statusDiv.innerHTML = `<span class="text-red-400">❌ ID "${input}" not found. Please check and try again.</span>`;
+        }
+    } catch (error) {
+        console.error(error);
+        statusDiv.innerHTML = "⚠️ System busy. Please try again in 1 minute.";
+    }
+}
   // FORM HANDLING
   const form = document.getElementById('pickupForm');
   const result = document.getElementById('formResponse');
@@ -286,3 +315,4 @@
 </script>
 </body>
 </html>
+

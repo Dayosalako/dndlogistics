@@ -15,6 +15,22 @@
     .mobile-menu-open { transform: translateX(0) !important; }
     #promo-modal { display: none; transition: opacity 0.4s ease; }
     #promo-modal.active { display: flex; }
+    .spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid #fff;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
     /* Keep navbar white and visible from the start */
 nav { 
@@ -382,9 +398,10 @@ const result = document.getElementById('formResponse');
 const submitBtn = document.getElementById('submitBtn');
 
 form.addEventListener('submit', function(e) {
-  e.preventDefault(); // Stop page refresh
+  e.preventDefault();
   
-  submitBtn.innerText = "Sending Request...";
+  // Add spinner to button
+  submitBtn.innerHTML = `<span class="spinner"></span> Sending Request...`;
   submitBtn.disabled = true;
 
   const formData = new FormData(form);
@@ -401,23 +418,20 @@ form.addEventListener('submit', function(e) {
   })
   .then(async (response) => {
     if (response.status == 200) {
-      // Show Success Message
       form.classList.add('hidden');
       result.classList.remove('hidden');
     } else {
-      alert("Something went wrong. Please try again.");
+      alert("Submission failed. Please check your Access Key.");
     }
   })
   .catch(error => {
-    console.log(error);
-    alert("Check your internet connection.");
+    alert("Connection error. Please try again.");
   })
   .finally(() => {
-    submitBtn.innerText = "Send Pickup Request";
+    submitBtn.innerHTML = "Send Pickup Request";
     submitBtn.disabled = false;
   });
 });
-
 // Function to allow sending another request
 function resetForm() {
   form.reset();
@@ -429,4 +443,5 @@ function resetForm() {
 </body>
 
 </html>
+
 

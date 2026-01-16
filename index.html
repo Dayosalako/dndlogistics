@@ -252,12 +252,12 @@ nav {
             </div>
         </div>
 
-        <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl relative" data-aos="fade-left">
+      <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl relative" data-aos="fade-left">
   <form action="https://api.sheetmonkey.io/form/c7zQo2N326Psp1U8ebmFL2" method="POST" id="pickupForm" class="space-y-4">
-    
     <input type="hidden" name="subject" value="New Pickup Request - DND Global">
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
     <input type="hidden" name="tracking_id" id="hiddenTrackingId">
+    <input type="hidden" name="status" value="Processing">
 
     <div class="grid md:grid-cols-2 gap-4">
       <div>
@@ -297,7 +297,7 @@ nav {
         <p class="text-xs uppercase font-bold text-gray-400 mb-1">Your Tracking ID</p>
         <div class="flex items-center justify-center gap-3">
             <p id="displayID" class="text-2xl font-black text-orange-500 tracking-widest"></p>
-            <button onclick="copyTrackingID()" class="p-2 bg-white border rounded-lg hover:bg-gray-100 transition shadow-sm" title="Copy ID">
+            <button onclick="copyTrackingID()" class="p-2 bg-white border rounded-lg hover:bg-gray-100 transition shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
@@ -308,9 +308,9 @@ nav {
 
     <p class="text-gray-600 mt-4 text-sm">Our team will contact you shortly.</p>
     <button onclick="resetForm()" class="mt-6 text-blue-900 font-bold underline">Send another request</button>
-    </div>
   </div>
-</section>
+</div>
+      
 
 <footer id="contact" class="bg-gray-950 text-white pt-20 pb-10">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 pb-16 border-b border-gray-800">

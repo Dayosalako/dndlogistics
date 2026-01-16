@@ -258,6 +258,7 @@ nav {
     <input type="hidden" name="access_key" value="c44f671d-7973-42e8-aab7-b63aec436af2">
     <input type="hidden" name="subject" value="New Pickup Request - DND Global">
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    <input type="hidden" name="tracking_id" id="hiddenTrackingId">
 
     <div class="grid md:grid-cols-2 gap-4">
       <div>
@@ -290,11 +291,25 @@ nav {
   </form>
 
   <div id="formResponse" class="hidden absolute inset-0 bg-white rounded-3xl flex flex-col items-center justify-center text-center p-6 z-10">
-    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl mb-4">✓</div>
-    <h3 class="text-2xl font-bold text-blue-900">Request Received!</h3>
-    <p class="text-gray-600 mt-2">Our dispatch team will call you shortly to confirm your pickup.</p>
-    <button onclick="resetForm()" class="mt-6 text-orange-500 font-bold underline">Send another request</button>
-  </div>
+    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mb-4">✓</div>
+    <h3 class="text-2xl font-bold text-blue-900">Request Sent!</h3>
+    
+    <div class="mt-4 p-4 bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl w-full max-w-xs mx-auto">
+        <p class="text-xs uppercase font-bold text-gray-400 mb-1">Your Tracking ID</p>
+        <div class="flex items-center justify-center gap-3">
+            <p id="displayID" class="text-2xl font-black text-orange-500 tracking-widest"></p>
+            <button onclick="copyTrackingID()" class="p-2 bg-white border rounded-lg hover:bg-gray-100 transition shadow-sm" title="Copy ID">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+            </button>
+        </div>
+        <span id="copyFeedback" class="text-[10px] text-green-600 font-bold uppercase hidden">Copied!</span>
+    </div>
+
+    <p class="text-gray-600 mt-4 text-sm">Our team will contact you shortly.</p>
+    <button onclick="resetForm()" class="mt-6 text-blue-900 font-bold underline">Send another request</button>
+</div>
 </div>
   </form>
 </div>
@@ -387,21 +402,28 @@ nav {
     loop: true
   });
 
-  const                    
-                      
-                      
-                      
-                      
-                      
-   form = document.getElementById('pickupForm');
+ const form = document.getElementById('pickupForm');
 const result = document.getElementById('formResponse');
 const submitBtn = document.getElementById('submitBtn');
+const hiddenInput = document.getElementById('hiddenTrackingId');
+
+// Function to create a unique ID (Example: DND-4829-X)
+function generateTrackingID() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ"; // Removed confusing letters like I and O
+  const randomChar = chars.charAt(Math.floor(Math.random() * chars.length));
+  const randomNum = Math.floor(1000 + Math.random() * 9000); // 4 digit number
+  return `DND-${randomNum}-${randomChar}`;
+}
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
-  
-  // Add spinner to button
-  submitBtn.innerHTML = `<span class="spinner"></span> Sending Request...`;
+
+  // 1. Generate the ID and put it in the hidden field
+  const newID = generateTrackingID();
+  hiddenInput.value = newID;
+
+  // 2. Visual feedback
+  submitBtn.innerHTML = `<span class="spinner"></span> Generating ID: ${newID}...`;
   submitBtn.disabled = true;
 
   const formData = new FormData(form);
@@ -418,31 +440,53 @@ form.addEventListener('submit', function(e) {
   })
   .then(async (response) => {
     if (response.status == 200) {
+      // 3. Show Success Message and display the ID to the customer
       form.classList.add('hidden');
       result.classList.remove('hidden');
+      
+      // Update the success message text to show their ID
+      document.getElementById('displayID').innerText = newID;
     } else {
-      alert("Submission failed. Please check your Access Key.");
+      alert("Submission failed. Please try again.");
     }
   })
   .catch(error => {
-    alert("Connection error. Please try again.");
+    alert("Connection error.");
   })
   .finally(() => {
     submitBtn.innerHTML = "Send Pickup Request";
     submitBtn.disabled = false;
   });
 });
-// Function to allow sending another request
+  // Function to allow sending another request
 function resetForm() {
   form.reset();
   form.classList.remove('hidden');
   result.classList.add('hidden');
+}
+
+  function copyTrackingID() {
+  const idText = document.getElementById('displayID').innerText;
+  const feedback = document.getElementById('copyFeedback');
+
+  navigator.clipboard.writeText(idText).then(() => {
+    // Show "Copied!" feedback
+    feedback.classList.remove('hidden');
+    
+    // Hide feedback after 2 seconds
+    setTimeout(() => {
+      feedback.classList.add('hidden');
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+  });
 }
 </script>
 
 </body>
 
 </html>
+
 
 
 

@@ -253,7 +253,7 @@ nav {
         </div>
 
         <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl relative" data-aos="fade-left">
-  <form action="https://api.web3forms.com/submit" method="POST" id="pickupForm" class="space-y-4">
+  <form action="https://api.sheetmonkey.io/form/c7zQo2N326Psp1U8ebmFL2" method="POST" id="pickupForm" class="space-y-4">
     
     <input type="hidden" name="access_key" value="c44f671d-7973-42e8-aab7-b63aec436af2">
     <input type="hidden" name="subject" value="New Pickup Request - DND Global">
@@ -377,13 +377,39 @@ nav {
   document.querySelectorAll('.mobile-link').forEach(l => l.onclick = () => mobileMenu.classList.remove('mobile-menu-open'));
 
   // TRACKING LOGIC
-  function trackPackage() {
-    const id = document.getElementById('trackingInput').value;
-    const res = document.getElementById('trackingStatus');
-    if(!id) { res.innerText = "Please enter a tracking number"; return; }
-    res.innerText = "Connecting to Satellite...";
-    setTimeout(() => { res.innerText = "Status for " + id + ": Arrived at Dispatch Hub (Lagos)"; }, 1500);
-  }
+  async function trackPackage() {
+    const input = document.getElementById('trackingInput').value.trim().toUpperCase();
+    const statusDiv = document.getElementById('trackingStatus');
+    
+    if(!input) {
+        statusDiv.innerHTML = "❌ Please enter an ID.";
+        return;
+    }
+
+    statusDiv.innerHTML = "🔍 Locating package...";
+
+    // Replace this URL with your "Published" Google Sheet CSV link
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRufMjlGYH970bObfzLz3hZOw5_fwy9Bnr-N2wEKN0VPpxPbaDk114OKPAAo8YokXfZFDM7g_BLrhNH/pub?output=csv";
+
+    try {
+        const response = await fetch(sheetURL);
+        const data = await response.text();
+        const rows = data.split('\n').map(row => row.split(','));
+
+        // Find the row where the Tracking ID matches (assuming ID is in column 1)
+        const match = rows.find(row => row[0].trim().toUpperCase() === input);
+
+        if (match) {
+            // Assuming Status is in Column 5 of your sheet
+            const currentStatus = match[4] || "Processing"; 
+            statusDiv.innerHTML = `📦 <span class="text-white">Status:</span> <span class="text-orange-400">${currentStatus}</span>`;
+        } else {
+            statusDiv.innerHTML = "❓ ID not found. Check and try again.";
+        }
+    } catch (error) {
+        statusDiv.innerHTML = "⚠️ Error connecting to tracking server.";
+    }
+}
 
   // COST ESTIMATOR
   function calculatePrice() {
@@ -486,6 +512,7 @@ function resetForm() {
 </body>
 
 </html>
+
 
 
 

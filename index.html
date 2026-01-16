@@ -370,8 +370,63 @@ nav {
     pagination: { el: ".swiper-pagination", clickable: true },
     loop: true
   });
+
+  const                    
+                      
+                      
+                      
+                      
+                      
+   form = document.getElementById('pickupForm');
+const result = document.getElementById('formResponse');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // Stop page refresh
+  
+  submitBtn.innerText = "Sending Request...";
+  submitBtn.disabled = true;
+
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: json
+  })
+  .then(async (response) => {
+    if (response.status == 200) {
+      // Show Success Message
+      form.classList.add('hidden');
+      result.classList.remove('hidden');
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  })
+  .catch(error => {
+    console.log(error);
+    alert("Check your internet connection.");
+  })
+  .finally(() => {
+    submitBtn.innerText = "Send Pickup Request";
+    submitBtn.disabled = false;
+  });
+});
+
+// Function to allow sending another request
+function resetForm() {
+  form.reset();
+  form.classList.remove('hidden');
+  result.classList.add('hidden');
+}
 </script>
 
 </body>
 
 </html>
+

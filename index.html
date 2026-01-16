@@ -218,11 +218,19 @@
               <label class="text-xs font-bold text-gray-500 uppercase ml-1">Pickup From</label>
               <input name="pickup_location" type="text" placeholder="Full Address" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
             </div>
+             <dev>
+            <label class="text-xs font-bold text-gray-500 uppercase ml-1">Full Name</label>
+            <input name="item_description" type="text" placeholder="e.g., Sender's Name" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
+          </dev>  
             <div>
               <label class="text-xs font-bold text-gray-500 uppercase ml-1">Deliver To</label>
               <input name="delivery_location" type="text" placeholder="Full Address" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
             </div>
           </div>
+          <dev>
+            <label class="text-xs font-bold text-gray-500 uppercase ml-1">Full Name</label>
+            <input name="item_description" type="text" placeholder="e.g., Receiver's Name" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
+          </dev>
           <div>
             <label class="text-xs font-bold text-gray-500 uppercase ml-1">Item Details</label>
             <input name="item_description" type="text" placeholder="e.g., 5kg Box" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
@@ -230,7 +238,7 @@
           <div>
             <label class="text-xs font-bold text-gray-500 uppercase ml-1">Phone Number</label>
             <input name="phone" type="tel" placeholder="080 1234 5678" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
-          </div>
+          </div>  
           <button type="submit" id="submitBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 rounded-xl shadow-lg transition-all transform hover:scale-[1.01]">
             Send Pickup Request
           </button>
@@ -390,4 +398,5 @@
 </script>
 </body>
 </html>
+
 

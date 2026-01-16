@@ -236,13 +236,11 @@ nav {
             </div>
         </div>
 
-        <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl" data-aos="fade-left">
-  <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-    <input type="hidden" name="from_name" value="DND Logistics Website">    
+        <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl relative" data-aos="fade-left">
+  <form action="https://api.web3forms.com/submit" method="POST" id="pickupForm" class="space-y-4">
+    
     <input type="hidden" name="access_key" value="c44f671d-7973-42e8-aab7-b63aec436af2">
-    
     <input type="hidden" name="subject" value="New Pickup Request - DND Global">
-    
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
     <div class="grid md:grid-cols-2 gap-4">
@@ -260,7 +258,7 @@ nav {
 
     <div>
       <label class="text-xs font-bold text-gray-500 uppercase ml-1">Item Details</label>
-      <input name="item_description" type="text" placeholder="Weight & Package Type (e.g., 5kg Box)" required 
+      <input name="item_description" type="text" placeholder="Weight & Package Type" required 
              class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
     </div>
 
@@ -270,10 +268,18 @@ nav {
              class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
     </div>
 
-    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 rounded-xl shadow-lg transition-all transform hover:scale-[1.02]">
+    <button type="submit" id="submitBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 rounded-xl shadow-lg transition-all">
       Send Pickup Request
     </button>
-    
+  </form>
+
+  <div id="formResponse" class="hidden absolute inset-0 bg-white rounded-3xl flex flex-col items-center justify-center text-center p-6 z-10">
+    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl mb-4">✓</div>
+    <h3 class="text-2xl font-bold text-blue-900">Request Received!</h3>
+    <p class="text-gray-600 mt-2">Our dispatch team will call you shortly to confirm your pickup.</p>
+    <button onclick="resetForm()" class="mt-6 text-orange-500 font-bold underline">Send another request</button>
+  </div>
+</div>
   </form>
 </div>
     </div>
@@ -367,4 +373,5 @@ nav {
 </script>
 
 </body>
+
 </html>

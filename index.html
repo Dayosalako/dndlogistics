@@ -286,7 +286,17 @@
 
 <script>
   AOS.init({ duration: 900, once: false, mirror: true });
-
+  
+ // NAVBAR SCROLL EFFECT
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+  
   // MODAL TRIGGER
   window.onload = function() {
     setTimeout(() => { document.getElementById('promo-modal').classList.add('active'); }, 5000);
@@ -347,6 +357,28 @@
         statusDiv.innerHTML = "⚠️ System busy. Please try again in 1 minute.";
     }
 }
+
+  // COST ESTIMATOR
+  function calculatePrice() {
+    const d = document.getElementById("distance").value;
+    const w = document.getElementById("weight").value;
+    const res = document.getElementById("priceResult");
+    if(!d || !w) { res.innerText = "Input missing fields"; return; }
+    const total = (d * 150) + (w * 350);
+    res.innerText = "₦ " + total.toLocaleString();
+  }
+// SWIPER TESTIMONIALS
+  const swiper = new Swiper(".mySwiper", {
+    autoplay: { delay: 4500 },
+    pagination: { el: ".swiper-pagination", clickable: true },
+    loop: true
+  });
+
+ const form = document.getElementById('pickupForm');
+const result = document.getElementById('formResponse');
+const submitBtn = document.getElementById('submitBtn');
+const hiddenInput = document.getElementById('hiddenTrackingId');
+  
   // FORM HANDLING
   const form = document.getElementById('pickupForm');
   const result = document.getElementById('formResponse');
@@ -393,6 +425,7 @@
 </script>
 </body>
 </html>
+
 
 
 

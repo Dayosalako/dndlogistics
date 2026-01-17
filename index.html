@@ -164,7 +164,7 @@
         </div>
       </div>
       <button onclick="calculatePrice()" class="w-full bg-blue-900 hover:bg-black text-white font-black py-4 md:py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1">GENERATE ESTIMATE</button>
-        <button onclick="resetCalculator()" class="px-8 py-6 rounded-2xl text-gray-400 font-bold hover:bg-gray-100 transition-all">Reset</button>
+        <button onclick="resetCalculator()" class="px-8 py-6 rounded-2xl text-gray-250 font-bold hover:bg-gray-100 transition-all">Reset</button>
       <p id="priceResult" class="text-center text-2xl md:text-3xl font-black text-orange-500 mt-8"></p>
     </div>
   </div>
@@ -190,7 +190,7 @@
           </div>
         </div>
       </div>
-      <div class="swiper-pagination pt-10"></div>
+      <div class="swiper-pagination pt-6"></div>
     </div>
   </div>
 </section>
@@ -326,7 +326,7 @@
     const input = document.getElementById('trackingInput').value.trim().toUpperCase();
     const statusDiv = document.getElementById('trackingStatus');
     if(!input) { statusDiv.innerHTML = "<p class='mt-4 text-red-400'>❌ Enter ID</p>"; return; }
-    statusDiv.innerHTML = "<p class='mt-4 text-orange-400 animate-pulse'>🔍 Searching database...</p>";
+    statusDiv.innerHTML = "<p class='mt-4 text-orange-400 animate-pulse'>🔍 Searching for Item...</p>";
     
     const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRCe6GWY3Pi1RkIxhgUWqagp6ci2wp0ZR981RXKCc8b4Kq7c7FnViOUToY8M_E2j08W2oyeNfORUMSL/pub?output=csv";
     try {
@@ -339,11 +339,11 @@
             statusDiv.innerHTML = `
                 <div class="bg-white/10 p-4 rounded-xl border border-orange-500/30 mt-6 max-w-lg mx-auto">
                     <p class="text-xs text-gray-300 uppercase font-bold tracking-widest">Tracking Information</p>
-                    <p class="text-2xl text-orange-500 font-black my-2">${match[5] || "Processing"}</p>
+                    <p class="text-2xl text-orange-500 font-black my-2">${match[5] || "Processing please wait"}</p>
                     <p class="text-[10px] md:text-xs text-blue-200">${match[1]} ➔ ${match[2]}</p>
                 </div>`;
         } else {
-            statusDiv.innerHTML = `<p class="mt-4 text-red-400">❌ ID "${input}" not found.</p>`;
+            statusDiv.innerHTML = `<p class="mt-4 text-red-400">❌ ID "${input}"Item not found.</p>`;
         }
     } catch (e) { statusDiv.innerHTML = "<p class='mt-4 text-red-400'>⚠️ Error connecting.</p>"; }
   }
@@ -406,6 +406,7 @@ function resetCalculator() {
 </script>
 </body>
 </html>
+
 
 
 

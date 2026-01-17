@@ -359,10 +359,9 @@
     res.innerText = "₦ " + ((d * 150) + (w * 350)).toLocaleString();
   }
 function resetCalculator() {
-  document.getElementById("amount").value = "";
-  document.getElementById("months").value = "";
-  document.getElementById("rate").value = "5"; // Resets back to 5%
-  document.getElementById("result").innerHTML = "";
+  document.getElementById("distance").value = "";
+  document.getElementById("weight").value = "";
+  document.getElementById("priceResult").innerHTML = "";
 }
   // SWIPER
   new Swiper(".mySwiper", { autoplay: { delay: 4500 }, pagination: { el: ".swiper-pagination" }, loop: true });
@@ -409,6 +408,7 @@ function resetCalculator() {
 </script>
 </body>
 </html>
+
 
 
 

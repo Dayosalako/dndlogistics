@@ -123,7 +123,7 @@
     <div data-aos="fade-right">
       <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-blue-900">About DND Global Logistics Ltd</h2>
       <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
-        DND Global Logistics Ltd is a registered Nigerian logistics company committed to efficient, safe, and reliable transportation solutions.
+        DND Global Logistics Ltd RC Number 9133502 is a registered Nigerian logistics company committed to efficient, safe, and reliable transportation solutions.
       </p>
       <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-8">
         We specialize in courier services, freight forwarding, haulage, and last-mile delivery using modern technology.
@@ -164,6 +164,7 @@
         </div>
       </div>
       <button onclick="calculatePrice()" class="w-full bg-blue-900 hover:bg-black text-white font-black py-4 md:py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1">
+        <button onclick="resetCalculator()" class="px-8 py-6 rounded-2xl text-gray-400 font-bold hover:bg-gray-100 transition-all">Reset</button>
         GENERATE ESTIMATE
       </button>
       <p id="priceResult" class="text-center text-2xl md:text-3xl font-black text-orange-500 mt-8"></p>
@@ -209,7 +210,7 @@
       </div>
 
       <div class="bg-white p-6 md:p-10 rounded-3xl shadow-2xl relative" data-aos="fade-left">
-        <form action="https://api.sheetmonkey.io/form/c7zQo2N326Psp1U8ebmFL2" method="POST" id="pickupForm" class="space-y-4">
+        <form action="https://api.sheetmonkey.io/form/gkWgE78VxKLMUMAmfPyMBZ" method="POST" id="pickupForm" class="space-y-4">
           <input type="hidden" name="tracking_id" id="hiddenTrackingId">
           <input type="hidden" name="status" value="Processing">
           
@@ -273,8 +274,13 @@
     </div>
     <div>
       <h3 class="text-xl font-bold mb-6 underline decoration-orange-500 decoration-4 underline-offset-8 text-sm">Contact Info</h3>
-      <p class="mb-3 text-sm">📍 Maiduguri, Borno State, Nigeria</p>
-      <p class="mb-3 text-sm">📞 +234 816 941 0967</p>
+      <p class="mb-3 text-sm">📍 Head-Office: Plot No DH11, Sunflower Estate, Karsana North, FCT Abuja</p>                    
+      <p class="mb-3 text-sm">📍 Branche: HOUSE NO. 4  Old Molia Quarters, Polo, close Jidari Bus Stop MAIDUGURI, BORNO STATE, MAIDUGURI, BORNO STATE.</p>                                        
+  <p class="mb-3 text-sm"> 📍⁠No 1, Old Runway, Opposite Liberty Clinic, Bafarawa Estate, Sokoto State </p>
+<p class="mb-3 text-sm">NO; 36 Janyau Ta Galas Behind Hamstore House. Gusua, Zamfara State.</p>
+<p class="mb-3 text-sm">No 5. Behind OandO bypass Birnin Kebbi, Kebbi State.</p>                                                            
+         <p class="mb-3 text-sm">📞 +234 904 555 1003, +234 814 614 3628</p>                                        
+    
       <p class="text-sm">📧 info@dndgloballogistics.com</p>
     </div>
     <div>
@@ -291,7 +297,7 @@
   </div>
 </footer>
 
-<a href="https://wa.me/+2348169410967" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 md:w-16 md:h-16 rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl transition hover:scale-110">
+<a href="https://wa.me/+2348146143628" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 md:w-16 md:h-16 rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl transition hover:scale-110">
     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.143c1.589.943 3.161 1.44 4.862 1.441 5.016 0 9.1-4.083 9.102-9.1 0-2.426-.945-4.707-2.661-6.423-1.716-1.716-3.998-2.662-6.424-2.662-5.018 0-9.102 4.084-9.103 9.1 0 1.884.57 3.393 1.577 5.137l-.993 3.626 3.74-.981z"/></svg>
 </a>
 
@@ -324,7 +330,7 @@
     if(!input) { statusDiv.innerHTML = "<p class='mt-4 text-red-400'>❌ Enter ID</p>"; return; }
     statusDiv.innerHTML = "<p class='mt-4 text-orange-400 animate-pulse'>🔍 Searching database...</p>";
     
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRufMjlGYH970bObfzLz3hZOw5_fwy9Bnr-N2wEKN0VPpxPbaDk114OKPAAo8YokXfZFDM7g_BLrhNH/pub?output=csv";
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRCe6GWY3Pi1RkIxhgUWqagp6ci2wp0ZR981RXKCc8b4Kq7c7FnViOUToY8M_E2j08W2oyeNfORUMSL/pub?output=csv";
     try {
         const response = await fetch(sheetURL);
         const csvData = await response.text();
@@ -352,7 +358,12 @@
     if(!d || !w) { res.innerText = "Input missing fields"; return; }
     res.innerText = "₦ " + ((d * 150) + (w * 350)).toLocaleString();
   }
-
+function resetCalculator() {
+  document.getElementById("amount").value = "";
+  document.getElementById("months").value = "";
+  document.getElementById("rate").value = "5"; // Resets back to 5%
+  document.getElementById("result").innerHTML = "";
+}
   // SWIPER
   new Swiper(".mySwiper", { autoplay: { delay: 4500 }, pagination: { el: ".swiper-pagination" }, loop: true });
 
@@ -398,6 +409,7 @@
 </script>
 </body>
 </html>
+
 
 
 

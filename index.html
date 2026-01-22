@@ -8,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <div id="liveDateTime" class="text-xs font-bold text-gray-400 text-center mt-4"></div>
 
   <style>
     .swiper-pagination-bullet-active { background: #f97316 !important; }
@@ -59,6 +60,7 @@
 <nav class="fixed w-full z-[1000] py-4 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
     <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex items-center group">
+      <a href="#booking" class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-full font-bold shadow-md transition">Request Pickup</a>
         <img src="assets/logo.png" onerror="this.style.display='none'" alt="DND" class="h-10">
         <span class="ml-2 font-black text-xl text-blue-900 uppercase tracking-tighter group-hover:text-orange-500 transition">DND Global</span>
     </a>
@@ -167,7 +169,7 @@
         </div>
       </div>
       <button onclick="calculatePrice()" class="w-full bg-blue-900 hover:bg-black text-white font-black py-4 md:py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1">GENERATE ESTIMATE</button>
-        <button onclick="resetCalculator()" class="px-5 py-4 rounded-2xl text-gray-250 font-bold hover:bg-gray-100 transition-all">Reset</button>
+        <button onclick="resetCalculator()" class="block mx-auto px-5 py-4 rounded-2xl text-gray-250 font-bold hover:bg-gray-100 transition-all">Reset</button>
       <p id="priceResult" class="text-center text-xl md:text-3xl font-black text-orange-500 mt-8"></p>
     </div>
   </div>
@@ -178,22 +180,25 @@
     <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-16" data-aos="fade-up">What Our Clients Say</h2>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
+
         <div class="swiper-slide px-4 md:px-12 text-center">
-          <p class="text-xl md:text-2xl italic mb-8 font-light leading-relaxed">"Their speed is unmatched. I sent a package from Lagos to Kano and it arrived perfectly within 48 hours."</p>
-          <div class="flex items-center justify-center gap-4">
-              <div class="w-10 h-10 md:w-12 md:h-12 bg-orange-500 rounded-full flex items-center justify-center font-bold">A</div>
-              <h4 class="font-bold text-orange-400">Ahmed Lawal</h4>
-          </div>
-        </div>
-        <div class="swiper-slide px-4 md:px-12 text-center">
-          <p class="text-xl md:text-2xl italic mb-8 font-light leading-relaxed">"Reliable haulage. We used them for factory relocation and all our equipment stayed secure."</p>
-          <div class="flex items-center justify-center gap-4">
-              <div class="w-10 h-10 md:w-12 md:h-12 bg-orange-500 rounded-full flex items-center justify-center font-bold">S</div>
-              <h4 class="font-bold text-orange-400">Sade Oke</h4>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-pagination pt-6"></div>
+  <p class="text-lg md:text-xl italic mb-6 font-light leading-relaxed">
+    "Their speed is unmatched. I sent a package from Lagos to Kano and it arrived perfectly within 48 hours."
+  </p>
+
+  <div class="flex items-center justify-center gap-4 mt-4">
+    <img src="https://i.pravatar.cc/100?img=3" class="w-12 h-12 rounded-full border-2 border-orange-500">
+    <div class="text-left">
+      <h4 class="font-bold text-orange-400">Ahmed Lawal</h4>
+      <p class="text-xs text-gray-300">Business Owner</p>
+      <div class="text-orange-400 text-sm">★★★★★</div>
+    </div>
+  </div>
+</div>
+
+        <div class="swiper-pagination pt-6"></div>
+        <div class="swiper-button-next text-orange-500"></div>
+<div class="swiper-button-prev text-orange-500"></div>
     </div>
   </div>
 </section>
@@ -214,25 +219,26 @@
         <form action="https://api.sheetmonkey.io/form/gkWgE78VxKLMUMAmfPyMBZ" method="POST" id="pickupForm" class="space-y-4">
           <input type="hidden" name="tracking_id" id="hiddenTrackingId">
           <input type="hidden" name="status" value="Processing">
+          <input type="hidden" name="submission_time" id="submissionTime">
           
           <div class="grid md:grid-cols-2 gap-4">
             <div>
               <label class="text-xs font-bold text-gray-500 uppercase ml-1">Pickup From</label>
               <input name="pickup_location" type="text" placeholder="Full Address" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
             </div>
-             <dev>
+             <div>
             <label class="text-xs font-bold text-gray-500 uppercase ml-1">Full Name</label>
             <input name="item_description" type="text" placeholder="e.g., Sender's Name" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
-          </dev>  
+          </div>  
             <div>
               <label class="text-xs font-bold text-gray-500 uppercase ml-1">Deliver To</label>
               <input name="delivery_location" type="text" placeholder="Full Address" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
             </div>
           </div>
-          <dev>
+          <div>
             <label class="text-xs font-bold text-gray-500 uppercase ml-1">Full Name</label>
             <input name="item_description" type="text" placeholder="e.g., Receiver's Name" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
-          </dev>
+          </div>
           <div>
             <label class="text-xs font-bold text-gray-500 uppercase ml-1">Item Details</label>
             <input name="item_description" type="text" placeholder="e.g., 5kg Box" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:border-orange-500">
@@ -334,6 +340,33 @@
   document.querySelectorAll('.mobile-link').forEach(link => {
     link.onclick = () => mobileMenu.classList.remove('mobile-menu-open');
   });
+  
+window.addEventListener("scroll", function() {
+  const nav = document.querySelector("nav");
+  if (window.scrollY > 50) {
+    nav.classList.add("shadow-xl");
+  } else {
+    nav.classList.remove("shadow-xl");
+  }
+});
+
+  const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (scrollY >= sectionTop) current = section.getAttribute("id");
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("text-orange-500");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("text-orange-500");
+    }
+  });
+});
 
   // TRACKING LOGIC
   async function trackPackage() {
@@ -375,8 +408,33 @@ function resetCalculator() {
   document.getElementById("weight").value = "";
   document.getElementById("priceResult").innerHTML = "";
 }
+
+  // LIVE DATE & TIME
+function updateDateTime() {
+  const now = new Date();
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  };
+  document.getElementById("liveDateTime").innerHTML = now.toLocaleString("en-NG", options);
+}
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
   // SWIPER
-  new Swiper(".mySwiper", { autoplay: { delay: 4500 }, pagination: { el: ".swiper-pagination" }, loop: true });
+  new Swiper(".mySwiper", {
+  autoplay: { delay: 4500 },
+  pagination: { el: ".swiper-pagination" },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+  loop: true
+});
 
   // FORM HANDLING
   const form = document.getElementById('pickupForm');
@@ -392,6 +450,7 @@ function resetCalculator() {
     e.preventDefault();
     const newID = generateTrackingID();
     hiddenTrackingInput.value = newID;
+    document.getElementById("submissionTime").value = new Date().toLocaleString("en-NG", { timeZone: "Africa/Lagos" });
     submitBtn.innerHTML = `<span class="spinner"></span> Sending...`;
     submitBtn.disabled = true;
 
@@ -420,6 +479,7 @@ function resetCalculator() {
 </script>
 </body>
 </html>
+
 
 
 
